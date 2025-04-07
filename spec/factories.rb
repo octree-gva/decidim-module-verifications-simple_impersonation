@@ -1,3 +1,4 @@
 # frozen_string_literal: true
 
-require "decidim/referral/test/factories"
+require 'decidim/verifications/simple_impersonation/test/factories'
+

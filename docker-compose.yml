@@ -1,13 +1,38 @@
 services:
-  local_postgres:
-    image: postgres:12
+  simple-impersonation:
+    command: bash -c "sleep infinity"
+    image: octree/decidim-dev:0.29
+    entrypoint: ""
     volumes:
-      - pg-data-test:/var/lib/postgresql/data
+      - .:/home/decidim/module
+      - bundle:/home/decidim/app/vendor
+      - node_modules:/home/decidim/app/node_modules
     environment:
-      - POSTGRES_PASSWORD=TEST-baeGhi4Ohtahcee5eejoaxaiwaezaiGo
-      - POSTGRES_USER=decidim
-      - POSTGRES_DB=decidim_test
+      - PORT=3000
+      - DATABASE_URL=postgresql://decidim:pleaseChangeMe@simple-impersonation-pg:5432/decidim
+      - DATABASE_HOST=simple-impersonation-pg
+      - DATABASE_USERNAME=decidim
+      - DATABASE_PASSWORD=pleaseChangeMe
+      - DEV_MODULE=decidim-verifications-simple_impersonation
+      - RAILS_ENV=development
+      - DISABLED_DOCKER_COMPOSE = true # To run tests in docker
+    depends_on:
+      - simple-impersonation-pg
     ports:
-      - 5432:5432
+      - 3000:3000
+    links:
+      - simple-impersonation-pg
+
+  simple-impersonation-pg:
+    image: postgres:15
+    volumes:
+      - simple-impersonation-pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DATABASE=decidim
+      - POSTGRES_USER=decidim
+      - POSTGRES_PASSWORD=pleaseChangeMe
+
 volumes:
-  pg-data-test: {}
+  node_modules: {}
+  bundle: {}
+  simple-impersonation-pg-data: {}
