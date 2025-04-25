@@ -3,7 +3,7 @@
 require "spec_helper"
 
 module Decidim
-  describe "decidim/verifications/authorizations/new", type: :view do
+  describe "decidim/verifications/authorizations/new" do
     let(:handler) do
       DummyAuthorizationHandler.new({})
     end
@@ -15,12 +15,7 @@ module Decidim
       view.extend DecidimFormHelper
       view.extend CtaButtonHelper
       view.extend ScopesHelper
-      allow(view).to receive(:current_organization).and_return(organization)
-      allow(view).to receive(:handler).and_return(handler)
-      allow(view).to receive(:params).and_return(handler: "dummy_authorization_handler")
-      allow(view).to receive(:authorizations_path).and_return("/authorizations")
-      allow(view).to receive(:stored_location).and_return("/processes")
-      allow(view).to receive(:redirect_url).and_return("/")
+      allow(view).to receive_messages(current_organization: organization, handler:, params: { handler: "dummy_authorization_handler" }, authorizations_path: "/authorizations", stored_location: "/processes", redirect_url: "/")
     end
 
     it "renders the form from the partial" do
@@ -39,7 +34,7 @@ module Decidim
       end
 
       it "displays the handler's title" do
-        expect(rendered).to have_selector("h1.title-decorator", text: I18n.t("sample_handler.name", scope: "decidim.authorization_handlers"))
+        expect(rendered).to have_css("h1.title-decorator", text: I18n.t("sample_handler.name", scope: "decidim.authorization_handlers"))
       end
 
       it "displays the admin-only explanation" do
@@ -54,11 +49,11 @@ module Decidim
       end
 
       it "displays the authorization form" do
-        expect(rendered).to have_selector("form")
+        expect(rendered).to have_css("form")
       end
 
       it "displays the authorization button" do
-        expect(rendered).to have_selector("button", text: I18n.t("decidim.verifications.authorizations.new.authorize"))
+        expect(rendered).to have_button(I18n.t("decidim.verifications.authorizations.new.authorize"))
       end
     end
   end

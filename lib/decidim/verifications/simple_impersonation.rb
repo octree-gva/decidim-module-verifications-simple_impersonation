@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'simple_impersonation/version'
-require_relative 'simple_impersonation/engine'
-require_relative 'simple_impersonation/workflow'
+require_relative "simple_impersonation/version"
+require_relative "simple_impersonation/engine"
+require_relative "simple_impersonation/workflow"
 
 module Decidim
   module Verifications

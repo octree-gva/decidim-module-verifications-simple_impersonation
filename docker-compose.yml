@@ -15,7 +15,8 @@ services:
       - DATABASE_PASSWORD=pleaseChangeMe
       - DEV_MODULE=decidim-verifications-simple_impersonation
       - RAILS_ENV=development
-      - DISABLED_DOCKER_COMPOSE = true # To run tests in docker
+      # To run tests in docker
+      - DISABLED_DOCKER_COMPOSE=true
     depends_on:
       - simple-impersonation-pg
     ports:
