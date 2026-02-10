@@ -1,0 +1,15 @@
+#! /bin/bash
+#
+# Sync versions across artifacts based on package.json.
+#
+
+PACKAGE_VERSION=$(jq -r '.version' package.json)
+
+# Update Ruby gem version
+file=lib/decidim/verifications/simple_impersonation/version.rb
+if [ -f "$file" ]; then
+  sed -i "/def self.version/{n;s/\".*\"/\"$PACKAGE_VERSION\"/}" "$file"
+fi
+
+echo "$PACKAGE_VERSION"
+
