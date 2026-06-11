@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    decidim-verifications-simple_impersonation (0.2.0)
+    decidim-verifications-simple_impersonation (0.2.1)
       decidim-admin (>= 0.26, < 0.30)
       decidim-core (>= 0.26, < 0.30)
       decidim-verifications (>= 0.26, < 0.30)
@@ -744,7 +744,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.6.0)
     uniform_notifier (1.16.0)
-    uri (1.0.2)
+    uri (1.1.1)
     valid_email2 (4.0.6)
       activemodel (>= 3.2)
       mail (~> 2.5)
@@ -805,7 +805,8 @@ DEPENDENCIES
   rspec-rails (~> 6.0)
   rubocop-faker
   uglifier (~> 4.1)
+  uri (= 1.1.1)
   web-console (~> 4.2)
 
 BUNDLED WITH
-   2.6.3
+   2.4.6
