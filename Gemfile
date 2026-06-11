@@ -10,12 +10,12 @@ require_relative "#{base_path}lib/decidim/verifications/simple_impersonation/ver
 
 DECIDIM_VERSION = "~> 0.29.1"
 
+gem "bootsnap", "~> 1.4"
 gem "decidim", DECIDIM_VERSION
 gem "decidim-verifications-simple_impersonation", path: base_path
-
-gem "bootsnap", "~> 1.4"
 gem "puma", ">= 6.3.1"
 gem "uglifier", "~> 4.1"
+gem "uri", "1.1.1"
 
 group :development, :test do
   gem "brakeman", "~> 6.1"
