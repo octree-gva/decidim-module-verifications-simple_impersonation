@@ -1,6 +1,6 @@
 {
   "name": "decidim-verifications-simple_impersonation",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "private": true,
   "dependencies": {},
   "scripts": {
