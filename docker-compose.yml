@@ -1,8 +1,10 @@
 services:
-  simple-impersonation:
+  simple_impersonation:
+    container_name: decidim-simple_impersonation
     command: bash -c "sleep infinity"
-    image: octree/decidim-dev:0.29
+    image: octree/decidim-dev:0.32
     entrypoint: ""
+    working_dir: /home/module
     volumes:
       - .:/home/module
       - bundle:/home/decidim/vendor
@@ -11,12 +13,14 @@ services:
       - PORT=3000
       - DATABASE_URL=postgresql://decidim:pleaseChangeMe@simple-impersonation-pg:5432/decidim
       - DATABASE_HOST=simple-impersonation-pg
+      - DATABASE_PORT=5432
       - DATABASE_USERNAME=decidim
       - DATABASE_PASSWORD=pleaseChangeMe
       - DEV_MODULE=decidim-verifications-simple_impersonation
       - RAILS_ENV=development
-      # To run tests in docker
       - DISABLED_DOCKER_COMPOSE=true
+      - DECIDIM_FORCE_SSL=false
+      - DISABLE_SPRING=1
     depends_on:
       - simple-impersonation-pg
     ports:
@@ -25,7 +29,8 @@ services:
       - simple-impersonation-pg
 
   simple-impersonation-pg:
-    image: postgres:16
+    container_name: decidim-simple_impersonation_pg
+    image: postgres:17
     volumes:
       - simple-impersonation-pg-data:/var/lib/postgresql/data
     environment:
