@@ -53,6 +53,12 @@ If you haven't done it already, [install](https://docs.docker.com/get-docker/) d
     bundle exec rake test_app
 ```
 
+Same RSpec job as GitLab CI:
+
+```
+    docker compose -f docker-compose.ci.yml run --rm rspec
+```
+
 ## Contributing
 This repository is not yet ready for contributions.
 
