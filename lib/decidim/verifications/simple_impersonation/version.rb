@@ -5,7 +5,7 @@ module Decidim
     # This holds the decidim-meetings version.
     module SimpleImpersonation
       def self.version
-        "0.2.3"
+        "0.3.0"
       end
 
       def self.decidim_version
