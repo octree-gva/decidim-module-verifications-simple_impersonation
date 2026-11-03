@@ -8,6 +8,18 @@ def seed_db(path)
   end
 end
 
+# --demo copies initiative signature handlers that eager-load Decidim::Initiatives.
+# This Gemfile does not load that component. The authorization view spec only needs DummyAuthorizationHandler.
+def remove_initiatives_demo_files(app_root)
+  relatives = [
+    "app/services/dummy_signature_handler.rb",
+    "app/services/dummy_sms_mobile_phone_validator.rb",
+    "config/initializers/decidim_initiatives.rb",
+    "app/views/decidim/initiatives"
+  ]
+  relatives.each { |relative| FileUtils.rm_rf(File.join(app_root, relative)) }
+end
+
 desc "Prepare for testing"
 task :prepare_tests do
   # Remove previous existing db, and recreate one.
@@ -58,6 +70,7 @@ task :test_app do
       "en,fr,es"
     )
   end
+  remove_initiatives_demo_files(File.expand_path("spec/decidim_dummy_app", __dir__))
   Rake::Task["prepare_tests"].invoke
 end
 

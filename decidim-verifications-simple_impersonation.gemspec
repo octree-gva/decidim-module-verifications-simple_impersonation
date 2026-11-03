@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ["hadrien@octree.ch"]
   s.license = "AGPL-3.0"
   s.homepage = "https://github.com/octree-gva/decidim-verifications-simple_impersonation"
-  s.required_ruby_version = ">= 3.2.2"
+  s.required_ruby_version = ">= 3.4.7"
 
   s.name = "decidim-verifications-simple_impersonation"
   s.summary = "A decidim impersonation verification flow"
